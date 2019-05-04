@@ -23,14 +23,15 @@ def authenticate():
 # open a csv file and scrape to it
 def scrape(api):
     # open csv file
-    with open("scrape_data.csv", "a") as csv_file:
-        csv_writer = csv.writer(csv_file)
+    with open("scrape_data.csv", "w") as csv_file:
+        csv_writer = csv.writer(csv_file, )
 
         for tweet in tweepy.Cursor(api.search,
                                    q=config.query,
                                    lang="en",
                                    since=config.start_date,
-                                   until=config.end_date).items(100):
+                                   until=config.end_date).items():
+            csv_writer.writerow([tweet.created_at, tweet.text.encode("utf-8")])
             print(tweet.text)
 
 
