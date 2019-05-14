@@ -23,3 +23,6 @@ Sentiment analysis tool written in Python using Tweepy and VADER
 - Twitter API free rate limits
 - Can only scrape tweets from the past 7 days
 - Can only analyze tweets in English
+
+## Sample output:
+![Sample Output](sample.png?raw=true "Sample Output")

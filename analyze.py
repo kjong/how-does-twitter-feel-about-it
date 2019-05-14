@@ -63,7 +63,7 @@ def scrape(api):
                                    q=config.query,
                                    lang="en",
                                    since=config.start_date,
-                                   until=config.end_date).items(500):
+                                   until=config.end_date).items(5000):
             # exclude retweets
             if "RT" not in tweet.text:
                 clean_text = clean(tweet.text)
