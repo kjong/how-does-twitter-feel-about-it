@@ -108,9 +108,9 @@ def main():
     print("Number of neutral tweets: " + str(counts[1]))
     print("Number of negative tweet: " + str(counts[2]))
     print("Most positive tweet: " + pos_tweet[1] +
-          " with a score of: " + str(pos_tweet[0]))
+          "\n\twith a score of: " + str(pos_tweet[0]))
     print("Most negative tweet: " + neg_tweet[1] +
-          " with a score of: " + str(neg_tweet[0]))
+          "\n\twith a score of: " + str(neg_tweet[0]))
 
 
 if __name__ == "__main__":
