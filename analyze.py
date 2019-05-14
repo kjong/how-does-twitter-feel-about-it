@@ -29,7 +29,7 @@ def clean(text):
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", text).split())
 
 
-def analyze(text):
+def analyze(analyzer, text):
     """Perform sentiment analysis on text
 
     Positive sentiment : compound_score >= 0.05
@@ -38,7 +38,6 @@ def analyze(text):
 
     :return: compound_score -> compound score between -1 (most negative) and 1 (most positive)
     """
-    analyzer = SentimentIntensityAnalyzer()
     score = analyzer.polarity_scores(text)["compound"]
     print(score)
     return score
@@ -64,14 +63,15 @@ def scrape(api):
                                    q=config.query,
                                    lang="en",
                                    since=config.start_date,
-                                   until=config.end_date).items(5000):
+                                   until=config.end_date).items(500):
             # exclude retweets
             if "RT" not in tweet.text:
                 clean_text = clean(tweet.text)
                 txt_file.write(clean_text + "\n")
 
                 # analyze
-                curr_score = analyze(clean_text)
+                analyzer = SentimentIntensityAnalyzer()
+                curr_score = analyze(analyzer, clean_text)
 
                 # positive
                 if curr_score >= 0.05:
